@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0b0f18;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .heart {
+        font-size: 80px;
+        color: #ff6b9d;
+        animation: glow 2s infinite alternate;
+        margin-bottom: 10px;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff4f87; }
+        to { text-shadow: 0 0 25px #ff99c2; }
+    }
+
+    #typeText {
+        font-size: 20px;
+        width: 90%;
+        margin: 0 auto;
+        min-height: 60px;
+        white-space: pre-line;
+    }
+
+    #revealBtn {
+        display: none;
+        margin-top: 25px;
+        background: #ff4f87;
+        border: none;
+        padding: 12px 24px;
+        color: white;
+        border-radius: 12px;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 0 20px #ff4f87aa;
+        animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        width: 80%;
+        max-width: 350px;
+        background: #151a28;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 25px #ff4f87aa;
+        animation: show 0.7s ease forwards;
+    }
+
+    @keyframes show {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .msgHeart {
+        position: fixed;
+        top: -10px;
+        color: #ff6b9d;
+        font-size: 20px;
+        animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+        from { transform: translateY(-20px); opacity: 1; }
+        to { transform: translateY(120vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div>
+    <div class="heart">❤️</div>
+    <div id="typeText"></div>
+    <button id="revealBtn">Tap to reveal my message 💖</button>
+</div>
+
+<div class="popup" id="popup">
+    <h2>For You ❤️</h2>
+    <p>
+        No matter where you go…  
+        No matter how far you fly…  
+        Remember this -  
+        <b>I’m always with you.</b>  
+        
+        You are my peace, my memory, my favourite story.  
+    </p>
+</div>
+
+<script>
+    const text = [
+        "Someone who loves you left something here…",
+        "And that someone already misses you a little extra."
+    ];
+
+    let i = 0, j = 0;
+    let current = "";
+    const speed = 60;
+    const typeBox = document.getElementById("typeText");
+    const btn = document.getElementById("revealBtn");
+
+    function typeEffect() {
+        if (i < text.length) {
+            if (j < text[i].length) {
+                current += text[i][j];
+                typeBox.textContent = current;
+                j++;
+                setTimeout(typeEffect, speed);
+            } else {
+                current += "\n";
+                typeBox.textContent = current;
+                i++;
+                j = 0;
+                setTimeout(typeEffect, 500);
+            }
+        } else {
+            btn.style.display = "inline-block";
+        }
+    }
+
+    typeEffect();
+
+    btn.onclick = () => {
+        document.getElementById("popup").style.display = "block";
+        createHearts();
+    };
+
+    function createHearts() {
+        for (let k = 0; k < 20; k++) {
+            let h = document.createElement("div");
+            h.classList.add("msgHeart");
+            h.textContent = "❤️";
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.animationDuration = 2 + Math.random() * 3 + "s";
+            document.body.appendChild(h);
+
+            setTimeout(() => { h.remove(); }, 5000);
+        }
+    }
+</script>
+
+</body>
+</html>
