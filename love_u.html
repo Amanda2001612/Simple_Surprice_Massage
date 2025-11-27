@@ -17,6 +17,17 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .content {
         text-align: center;
     }
 
@@ -46,7 +57,7 @@
         background: #ff4f87;
         border: none;
         padding: 12px 24px;
-        color: white;
+        color: rgb(255, 255, 255);
         border-radius: 12px;
         font-size: 18px;
         cursor: pointer;
@@ -62,6 +73,9 @@
     .popup {
         display: none;
         position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 80%;
         max-width: 350px;
         background: #151a28;
@@ -72,8 +86,8 @@
     }
 
     @keyframes show {
-        from { opacity: 0; transform: scale(0.8); }
-        to { opacity: 1; transform: scale(1); }
+        from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
     }
 
     .msgHeart {
@@ -93,10 +107,12 @@
 
 <body>
 
-<div>
-    <div class="heart">❤️</div>
-    <div id="typeText"></div>
-    <button id="revealBtn">Tap to reveal my message 💖</button>
+<div class="container">
+    <div class="content">
+        <div class="heart">❤️</div>
+        <div id="typeText"></div>
+        <button id="revealBtn">Tap to reveal my message 💖</button>
+    </div>
 </div>
 
 <div class="popup" id="popup">
@@ -105,7 +121,7 @@
         No matter where you go…  
         No matter how far you fly…  
         Remember this -  
-        <b>I’m always with you.</b>  
+        <b>I'm always with you.</b>  
         
         You are my peace, my memory, my favourite story.  
     </p>
